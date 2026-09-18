@@ -1,0 +1,32 @@
+# Bokklubben – Cursor Rules
+
+## Project
+Multi-tenant book club platform. Next.js 15 App Router, Supabase (Postgres), Tailwind CSS, shadcn/ui.
+
+## Auth Model
+No user accounts. Per-group **group password** (always use this phrase). JWT stored in localStorage as `bookclub_[slug]_token`. Verified server-side on every protected API route. Never call this "password" alone — always "group password".
+
+## Code Rules
+- TypeScript strict — no `any`
+- No client-side Supabase writes — all mutations go through API Route Handlers using `SUPABASE_SERVICE_ROLE_KEY`
+- Tailwind only — no inline styles, no CSS modules
+- shadcn/ui for all interactive components
+- File names: `kebab-case`. Component names: `PascalCase`
+- Server Components by default; add `'use client'` only when needed
+- `NEXT_PUBLIC_` prefix only for values safe to expose to the browser
+
+## Naming
+- `groups` — group table; `slug` is the URL identifier
+- `group_books` — join table linking groups to books with a status (`want_to_read` | `already_read`)
+- `books` — shared catalog, keyed by `google_books_id`
+- `ratings` — per group-book, per `rater_id` (anonymous UUID from localStorage); scale 1–10
+
+## Routes
+- `/` — landing
+- `/[slug]` — group page
+- `/[slug]/settings` — admin (group password required)
+- `/[slug]/books/[bookId]` — book detail
+
+## Environment Variables
+- `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` — public
+- `SUPABASE_SERVICE_ROLE_KEY`, `JWT_SECRET`, `GOOGLE_BOOKS_API_KEY` — server only, never expose
