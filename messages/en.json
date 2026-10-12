@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "brand": "Sofiacirkel",
+    "newCircle": "New circle"
+  },
+  "landing": {
+    "heroTitle": "Have you read it?",
+    "heroTitleHighlight": "Now you'll always know.",
+    "heroSubtitle": "Save what you want to read. Remember what you've read. Find inspiration in other people's open circles.",
+    "cta": "Start a circle →",
+    "myCircles": "Your circles",
+    "discover": "Discover",
+    "discoverSubtitle": "Browse what other circles are reading and find your next inspiration.",
+    "searchPlaceholder": "Search by circle name…",
+    "noCircles": "No circles yet — be the first.",
+    "noResults": "No circles match \"{query}\".",
+    "booksRead": "{count, plural, one {# read} other {# read}}",
+    "booksQueued": "{count, plural, one {# queued} other {# queued}}",
+    "noBooks": "No books yet"
+  },
+  "circle": {
+    "createTitle": "Create a circle",
+    "namePlaceholder": "Circle name…",
+    "slugLabel": "Your link",
+    "create": "Create",
+    "creating": "Creating…",
+    "nameRequired": "Enter a name",
+    "slugTaken": "That link is already taken — try a different name.",
+    "read": "Read",
+    "wantToRead": "Want to read",
+    "addBook": "Add book",
+    "circleRating": "Circle rating",
+    "communityRating": "Community rating",
+    "members": "{count, plural, one {# member} other {# members}}",
+    "invite": "Invite",
+    "rename": "Rename",
+    "emptyRead": "You haven't read any books yet.",
+    "emptyWant": "No books in the queue yet.",
+    "leaveCircle": "Leave circle",
+    "leaveConfirmTitle": "Leave this circle?",
+    "leaveConfirmBody": "You'll leave the circle. You can always rejoin via an invite link.",
+    "leaveLastTitle": "You're the only member",
+    "leaveLastBody": "If you leave, the circle and all its books will be permanently deleted. This cannot be undone.",
+    "leaveButton": "Leave",
+    "cancel": "Cancel",
+    "membersTitle": "Members"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signInGoogle": "Continue with Google",
+    "signInApple": "Continue with Apple",
+    "signOut": "Sign out",
+    "signInToCreate": "Sign in to create a circle",
+    "signInToJoin": "Sign in to join"
+  },
+  "book": {
+    "addedBy": "Added by {name}",
+    "rateThis": "Rate this book",
+    "yourRating": "Your rating",
+    "status": {
+      "read": "Read",
+      "wantToRead": "Want to read"
+    }
+  },
+  "invite": {
+    "title": "Invite to circle",
+    "linkCreated": "Invite link created",
+    "copy": "Copy link",
+    "copied": "Copied!"
+  },
+  "errors": {
+    "notFound": "Page not found.",
+    "generic": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "tagline": "Reading for everyone",
+    "contact": "Contact"
+  }
+}

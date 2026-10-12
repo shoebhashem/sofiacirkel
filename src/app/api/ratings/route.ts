@@ -1,54 +1,48 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
-import { verifyAuthHeader } from "@/lib/auth";
+import { supabaseService } from "@/lib/supabase/service";
 
-export async function POST(req: NextRequest) {
-  const body = await req.json();
-  const { groupBookId, raterId, stars, slug } = body as {
-    groupBookId: string;
-    raterId: string;
-    stars: number;
-    slug: string;
-  };
+export async function POST(request: Request) {
+  const authClient = await supabaseServer();
+  const { data: { user } } = await authClient.auth.getUser();
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  if (!groupBookId || !raterId || !slug) {
-    return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
-  }
-  if (typeof stars !== "number" || stars < 1 || stars > 10) {
-    return NextResponse.json({ error: "Rating must be between 1 and 10." }, { status: 400 });
+  const { circleBookId, rating } = await request.json();
+
+  if (!circleBookId || typeof rating !== "number" || rating < 1 || rating > 10) {
+    return NextResponse.json({ error: "Invalid rating (1–10 required)." }, { status: 400 });
   }
 
-  const db = supabaseServer();
+  const db = supabaseService();
 
-  // Check the group's rating mode
-  const { data: group } = await db
-    .from("groups")
-    .select("id, rating_mode")
-    .eq("slug", slug)
+  // Verify user is a member of the circle this book belongs to
+  const { data: cb } = await db
+    .from("circle_books")
+    .select("circle_id")
+    .eq("id", circleBookId)
+    .single();
+
+  if (!cb) return NextResponse.json({ error: "Book not found." }, { status: 404 });
+
+  const { data: membership } = await db
+    .from("circle_members")
+    .select("circle_id")
+    .eq("circle_id", cb.circle_id)
+    .eq("user_id", user.id)
     .maybeSingle();
 
-  if (!group) return NextResponse.json({ error: "Group not found." }, { status: 404 });
+  if (!membership) return NextResponse.json({ error: "Not a member." }, { status: 403 });
 
-  if (group.rating_mode === "private") {
-    const authorized = await verifyAuthHeader(req.headers.get("authorization"), slug);
-    if (!authorized) {
-      return NextResponse.json(
-        { error: "This group requires the group password to rate books." },
-        { status: 401 }
-      );
-    }
-  }
-
-  // Upsert: update rating if same rater rates again
   const { data, error } = await db
     .from("ratings")
     .upsert(
-      { group_book_id: groupBookId, rater_id: raterId, stars },
-      { onConflict: "group_book_id,rater_id" }
+      { circle_book_id: circleBookId, user_id: user.id, rating, updated_at: new Date().toISOString() },
+      { onConflict: "circle_book_id,user_id" }
     )
-    .select()
+    .select("id, rating")
     .single();
 
   if (error) return NextResponse.json({ error: "Failed to save rating." }, { status: 500 });
+
   return NextResponse.json({ rating: data });
 }

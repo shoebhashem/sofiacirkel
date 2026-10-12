@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "brand": "Sofiacirkel",
+    "newCircle": "Ny cirkel"
+  },
+  "landing": {
+    "heroTitle": "Har du läst den?",
+    "heroTitleHighlight": "Nu vet du alltid.",
+    "heroSubtitle": "Spara det du vill läsa. Minns det du läst. Inspireras av andras öppna cirklar.",
+    "cta": "Skapa en cirkel →",
+    "myCircles": "Dina cirklar",
+    "discover": "Utforska",
+    "discoverSubtitle": "Se vad andra cirklar läser och hitta din nästa inspirationskälla.",
+    "searchPlaceholder": "Sök cirkelnamn…",
+    "noCircles": "Inga cirklar än — var den första.",
+    "noResults": "Inga cirklar matchar \"{query}\".",
+    "booksRead": "{count, plural, one {# läst} other {# lästa}}",
+    "booksQueued": "{count, plural, one {# i kö} other {# i kö}}",
+    "noBooks": "Inga böcker än"
+  },
+  "circle": {
+    "createTitle": "Skapa en cirkel",
+    "namePlaceholder": "Cirkelns namn…",
+    "slugLabel": "Din länk",
+    "create": "Skapa",
+    "creating": "Skapar…",
+    "nameRequired": "Ange ett namn",
+    "slugTaken": "Länken är redan tagen — prova ett annat namn.",
+    "read": "Lästa",
+    "wantToRead": "Vill läsa",
+    "addBook": "Lägg till bok",
+    "circleRating": "Cirkelbetyg",
+    "communityRating": "Gemensamt betyg",
+    "members": "{count, plural, one {# medlem} other {# medlemmar}}",
+    "invite": "Bjud in",
+    "rename": "Byt namn",
+    "emptyRead": "Ni har inte läst några böcker ännu.",
+    "emptyWant": "Ni har inga böcker i kön ännu.",
+    "leaveCircle": "Lämna cirkel",
+    "leaveConfirmTitle": "Lämna cirkeln?",
+    "leaveConfirmBody": "Du lämnar cirkeln. Du kan alltid gå med igen via en inbjudningslänk.",
+    "leaveLastTitle": "Du är den enda medlemmen",
+    "leaveLastBody": "Om du lämnar raderas cirkeln och alla böcker permanent. Det går inte att ångra.",
+    "leaveButton": "Lämna",
+    "cancel": "Avbryt",
+    "membersTitle": "Medlemmar"
+  },
+  "auth": {
+    "signIn": "Logga in",
+    "signInGoogle": "Fortsätt med Google",
+    "signInApple": "Fortsätt med Apple",
+    "signOut": "Logga ut",
+    "signInToCreate": "Logga in för att skapa en cirkel",
+    "signInToJoin": "Logga in för att gå med"
+  },
+  "book": {
+    "addedBy": "Tillagd av {name}",
+    "rateThis": "Betygsätt denna bok",
+    "yourRating": "Ditt betyg",
+    "status": {
+      "read": "Läst",
+      "wantToRead": "Vill läsa"
+    }
+  },
+  "invite": {
+    "title": "Bjud in till cirkel",
+    "linkCreated": "Inbjudningslänk skapad",
+    "copy": "Kopiera länk",
+    "copied": "Kopierad!"
+  },
+  "errors": {
+    "notFound": "Sidan hittades inte.",
+    "generic": "Något gick fel. Försök igen."
+  },
+  "footer": {
+    "tagline": "Läsning för alla",
+    "contact": "Kontakt"
+  }
+}

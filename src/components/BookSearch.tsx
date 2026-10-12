@@ -29,7 +29,7 @@ export function BookSearch({ onSelect }: BookSearchProps) {
       if (!res.ok) throw new Error(data.error);
       setResults(data.results);
     } catch {
-      setError("Book search failed. Please try again.");
+      setError("Boksökningen är tillfälligt otillgänglig. Försök igen om några minuter.");
       setResults([]);
     } finally {
       setLoading(false);
@@ -56,9 +56,9 @@ export function BookSearch({ onSelect }: BookSearchProps) {
         <p className="text-sm text-muted-foreground">No books found. Try a different search.</p>
       )}
 
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2 max-h-[300px] overflow-y-auto pr-1">
         {results.map((book) => (
-          <li key={book.google_books_id}>
+          <li key={book.id}>
             <button
               type="button"
               className="w-full flex gap-3 items-start p-2 rounded-md text-left hover:bg-muted transition-colors"
@@ -78,7 +78,9 @@ export function BookSearch({ onSelect }: BookSearchProps) {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium line-clamp-2">{book.title}</p>
-                {book.author && <p className="text-xs text-muted-foreground">{book.author}</p>}
+                {book.authors.length > 0 && (
+                  <p className="text-xs text-muted-foreground">{book.authors.join(", ")}</p>
+                )}
                 {book.published_year && (
                   <p className="text-xs text-muted-foreground">{book.published_year}</p>
                 )}

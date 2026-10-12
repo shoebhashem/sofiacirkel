@@ -1,54 +1,59 @@
-export type RatingMode = "public" | "private";
-export type BookStatus = "want_to_read" | "already_read";
+export type BookStatus = "want_to_read" | "read";
 
-export interface Group {
+export interface Circle {
   id: string;
   slug: string;
   name: string;
-  rating_mode: RatingMode;
+  created_by: string | null;
   created_at: string;
+}
+
+export interface CirclePreview {
+  slug: string;
+  name: string;
+  read_count: number;
+  want_count: number;
+  covers: Array<{ title: string; cover_url: string | null }>;
 }
 
 export interface Book {
   id: string;
-  google_books_id: string;
   title: string;
-  author: string | null;
+  authors: string[];
   cover_url: string | null;
   description: string | null;
-  genre: string | null;
   published_year: number | null;
   page_count: number | null;
 }
 
-export interface GroupBook {
+export interface CircleBook {
   id: string;
-  group_id: string;
+  circle_id: string;
   book_id: string;
   status: BookStatus;
+  added_by: string | null;
   added_at: string;
-  finished_at: string | null;
   book: Book;
-  average_rating: number | null;
+  circle_rating: number | null;
+  community_rating: number | null;
   rating_count: number;
 }
 
 export interface Rating {
   id: string;
-  group_book_id: string;
-  rater_id: string;
-  stars: number;
+  circle_book_id: string;
+  user_id: string;
+  rating: number;
   created_at: string;
+  updated_at: string;
 }
 
-// Shape returned by Google Books API search
 export interface GoogleBooksResult {
-  google_books_id: string;
+  id: string;
   title: string;
-  author: string | null;
+  authors: string[];
   cover_url: string | null;
   description: string | null;
-  genre: string | null;
   published_year: number | null;
   page_count: number | null;
 }
