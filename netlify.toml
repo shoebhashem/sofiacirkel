@@ -2,5 +2,12 @@
   command = "npm run build"
   publish = ".next"
 
+# NEXT_PUBLIC_* vars are intentionally embedded in the client bundle (Supabase anon key is
+# designed to be public). Turbopack cache files also contain server-only keys as build
+# artifacts — they are never served to users.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,GOOGLE_BOOKS_API_KEY,JWT_SECRET"
+  SECRETS_SCAN_OMIT_PATHS = ".netlify/.next/cache"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
