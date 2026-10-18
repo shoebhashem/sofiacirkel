@@ -22,7 +22,7 @@ export default async function JoinPage({ params }: Props) {
 
   if (!invite) notFound();
 
-  const circle = invite.circles as { id: string; slug: string; name: string };
+  const circle = invite.circles as unknown as { id: string; slug: string; name: string };
   const expired = !!invite.expires_at && new Date(invite.expires_at) < new Date();
   const limitReached = invite.max_uses !== null && invite.use_count >= invite.max_uses;
 
